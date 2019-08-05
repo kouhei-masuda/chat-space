@@ -1,0 +1,44 @@
+.wrapper
+  .chat-side
+    .side-header
+      .side-header__box
+        %p.side-header__box__user-name
+          aaaaaa
+        %ul.side-header__box__menu
+          =link_to "#", class: "" do
+            %li.side-header__box__menu__new-group
+              %i.fa.fa-edit
+          =link_to "#", class: "" do
+            %li.side-header__box__menu__user
+              %i.fa.fa-cog
+    .groups
+      =link_to "#", class: "" do
+        .group
+          %p.group__group-name
+            aaaaaaaaaaa
+          %p.group__latest-message
+            aaaaaaaaaaaaa
+  .chat-main
+    /グループ情報表示
+    .main-header
+      .main-header__left-box
+        %h2.main-header__left-box__current-group
+          aaaaaaaaaaaaaaaaaa
+        %ul.main-header__left-box__member-list
+          Member：
+          %li.main-header__left-box__member-list__member
+            aaaaa
+      .main-header__edit-btn
+        Edit
+    /メッセージ画面（メッセージ部分は切り分け）
+    .messages
+      = render partial: 'messages/message'
+    /フォーム部分
+    .form
+      %form.new-message
+        .input-box
+          %input.input-box__text{:type => "text", :placeholder => "type a message"}
+            %label.input-box__image
+              %i.fa.fa-image
+              %input.input-box__image__file{:type => "file"}
+        %input.submit-btn{:type => "submit", :value => "Send"}
