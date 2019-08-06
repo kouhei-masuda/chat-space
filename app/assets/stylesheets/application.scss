@@ -13,7 +13,10 @@
  *= require_tree .
  *= require_self
  */
+ @import "./config/colors";
  @import "reset";
  @import "message";
  @import 'font-awesome';
  @import 'font-awesome-sprockets';
+ @import "user";
+ @import "./modules/flash";
