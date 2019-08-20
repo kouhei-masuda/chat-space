@@ -1,0 +1,44 @@
+.wrapper
+  .chat-side
+    .side-header
+      .side-header__box
+        %p.side-header__box__user-name
+          aaaaaa
+          %ul.side-header__box__menu
+            %li.side-header__box__menu__new-group
+              = link_to new_group_path do
+                %i.fa.fa-edit
+            %li.side-header__box__menu__user
+              = link_to edit_user_path(current_user) do
+                %i.fa.fa-cog
+    .groups
+      - current_user.groups.each do |group|
+        .group
+          = link_to group_messages_path(group) do
+            .group__name
+              = group.name
+            .group__message
+              = group.show_last_message
+  .chat-main
+    .main-header
+      .main-header__left-box
+        %h2.main-header__left-box__current-group
+          aaaaaaaaaaaaaaaaaa
+        %ul.main-header__left-box__member-list
+          Member：
+          %li.main-header__left-box__member-list__member
+            aaaaa
+      .main-header__edit-btn
+        
+        = link_to 'Edit', edit_group_path(@group)
+    .messages
+      = render @messages
+
+    .form
+      = form_for [@group, @message] do |f|
+        .input-box
+          = f.text_field :content, class: 'input-box__text', placeholder: 'type a message'
+          = f.label :image, class: 'input-box__image' do
+            = fa_icon 'picture-o', class: 'icon'
+            = f.file_field :image, class: 'input-box__image__file'
+        = f.submit 'Send', class: 'submit-btn'
