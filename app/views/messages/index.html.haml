@@ -12,14 +12,13 @@
               = link_to edit_user_path(current_user) do
                 %i.fa.fa-cog
     .groups
-      - current_user.groups.each do |group|
-        = link_to group_messages_path(group) do
-          .group
-            .group__name
-              = group.name
-            .group__message
-              = group.show_last_message
+      .group
+        %p.group__group-name
+          aaaaaaaaaaa
+        %p.group__latest-message
+          aaaaaaaaaaaaa
   .chat-main
+    /グループ情報表示
     .main-header
       .main-header__left-box
         %h2.main-header__left-box__current-group
@@ -29,16 +28,16 @@
           %li.main-header__left-box__member-list__member
             aaaaa
       .main-header__edit-btn
-        
-        = link_to 'Edit', edit_group_path(@group)
+        Edit
+    /メッセージ画面（メッセージ部分は切り分け）
     .messages
-      = render @messages
-
+      = render partial: 'messages/message'
+    /フォーム部分
     .form
-      = form_for [@group, @message] do |f|
+      %form.new-message
         .input-box
-          = f.text_field :content, class: 'input-box__text', placeholder: 'type a message'
-          = f.label :image, class: 'input-box__image' do
-            = fa_icon 'picture-o', class: 'icon'
-            = f.file_field :image, class: 'input-box__image__file'
-        = f.submit 'Send', class: 'submit-btn'
+          %input.input-box__text{:type => "text", :placeholder => "type a message"}
+            %label.input-box__image
+              %i.fa.fa-image
+              %input.input-box__image__file{:type => "file"}
+        %input.submit-btn{:type => "submit", :value => "Send"}
