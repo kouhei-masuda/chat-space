@@ -1,6 +1,6 @@
 $(function(){
   function buildHTML(message){
-    var  tag_image = '';
+
     message.image ==　null ? tag_image = '' :tag_image =  `<img class="lower-message__image" src="${message.image}">`
    
     var html = `
@@ -15,9 +15,9 @@ $(function(){
      </div>
      <p class="lower-message__content">
         ${message.content}
-     </p>` 
-        + tag_image +
-    `</div>`
+     </p>
+        ${tag_image}
+    </div>`
     return html;
     
   }
@@ -36,7 +36,7 @@ $(function(){
     .done(function(data){
       var html = buildHTML(data);
       $('.messages').append(html);  
-      $('.input-box__text').val('')
+      $('.input-box')[0].reset();
       $('.messages').animate({scrollTop:$(".messages")[0].scrollHeight}, 'fast');
     })
     .fail(function(){
