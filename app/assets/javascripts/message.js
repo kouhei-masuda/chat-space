@@ -2,7 +2,6 @@ $(function(){
   function buildHTML(message){
 
     message.image ==　null ? tag_image = '' :tag_image =  `<img class="lower-message__image" src="${message.image}">`
-   
     var html = `
     <div class='message'>
      <div class='message__upper-info'>
