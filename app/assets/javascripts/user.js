@@ -28,7 +28,8 @@ $(function() {
   }
 
   $(function(){
-    $("#user-search-field").on("keyup", function() {
+    $(document).on('keyup','#user-search-field', function() {
+     
       var input = $("#user-search-field").val();
 
       $.ajax({
@@ -52,6 +53,7 @@ $(function() {
       .fail(function() {
         alert('ユーザー検索に失敗しました');
       })
+      return false;
     });
 
     $(function(){
