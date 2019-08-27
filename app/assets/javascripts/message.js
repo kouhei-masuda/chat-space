@@ -3,7 +3,7 @@ $(function(){
 
  var tag_image =  message.image ==　null ? '' :  `<img class="lower-message__image" src="${message.image}">`
     var html = `
-    <div class='message'>
+    <div class='message'data-message-id="${message.id}">
      <div class='message__upper-info'>
       <div class='message__upper-info__talker'>
         ${message.user_name}
