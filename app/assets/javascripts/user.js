@@ -1,34 +1,30 @@
 $(function() {
 
-  var search_list = $("#user-search-result");
-  var member_list = $("#chat-group-users");
-
-  function appendUsers(user) {
+  function addUsers(user) {
     var html =`<div class="chat-group-user clearfix">
                 <p class="chat-group-user__name">${ user.name }</p>
                 <a class="user-search-add chat-group-user__btn chat-group-user__btn--add" data-user-id="${ user.id }" data-user-name=${ user.name }>追加</a>
               </div>`
 
-　　 search_list.append(html);
+    $("#user-search-result").append(html);
     return html;
    }
 
-  function appendMembers(name, user_id) {
-    var html =`<div class='chat-group-user clearfix js-chat-member' id='chat-group-user-8'>
+  function addMembers(name, user_id) {
+    var html =`<div class='chat-group-user clearfix js-chat-member' id='chat-group-user'>
                 <input name='group[user_ids][]' type='hidden' value=${ user_id }>
                 <p class='chat-group-user__name'>${ name }</p>
                 <p class='user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn'>削除</p>
                 </div>`
 
-　　 member_list.append(html);
+    $("#chat-group-users").append(html);
   }
 
-  function noUsers(info) {
+  function no_users(info) {
     var html =`<div class="chat-group-user clearfix">
                 <p class="chat-group-user__name">${ info }</p>
               </div>`
-
-    search_list.append(html);
+    $("#user-search-result").append(html);
   }
 
   $(function(){
@@ -46,11 +42,11 @@ $(function() {
         $("#user-search-result").empty();
           if (users.length !== 0) {
             users.forEach(function(user){
-            appendUsers(user);
+            addUsers(user);
             });
           }
           else {
-            noUsers("一致するユーザーはいません");
+            no_users("一致するユーザーが見つかりません");
           }
         })
       .fail(function() {
@@ -64,7 +60,7 @@ $(function() {
         var name = $(this).data("user-name");
         var user_id = $(this).data("user-id");
         $(this).parent().remove();
-        appendMembers(name, user_id);
+        addMembers(name, user_id);
       });
 
 　    $(document).on("click", '.user-search-remove', function() {
