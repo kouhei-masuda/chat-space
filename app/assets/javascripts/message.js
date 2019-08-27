@@ -44,7 +44,7 @@ $(function(){
     return false;
   })
 
-  var reloadMessages = function () {
+  var updateMessages = function () {
     if (window.location.href.match(/\/groups\/\d+\/messages/)){
       var last_message_id = $('.message:last').data("message-id"); 
 
@@ -69,5 +69,5 @@ $(function(){
       return false;
     }
   };
-  setInterval(reloadMessages, 5000);
+  setInterval(updateMessages, 5000);
   });
