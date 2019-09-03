@@ -1,23 +1,23 @@
 class UsersController < ApplicationController
- 
+
   def index
-    @users = User.where('name LIKE(?) and id != ?', "%#{params[:keyword]}%" ,current_user)
+    @users = User.where('name LIKE(?) and id != ? ', "%#{params[:keyword]}%" ,current_user).where.not(id: params[:except])
     respond_to do |format|
-      format.html
+      format.html{redirect_to new_group_path}
       format.json
    end
-   
+
   end
 
 
   def edit
-    
+
   end
 
   def update
     if current_user.update(user_params)
       redirect_to  root_path
-    else 
+    else
       render :edit
     end
   end

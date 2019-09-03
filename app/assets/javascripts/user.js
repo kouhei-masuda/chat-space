@@ -29,13 +29,16 @@ $(function() {
 
   $(function(){
     $(document).on('keyup','#user-search-field', function() {
-     
-      var input = $("#user-search-field").val();
-
+      
+      
+      var input = $(this).val();
+      var except = $('input[type="hidden"]').map(function(){return $(this).val()}).get()
+      console.log(except)
+      if(input !== ''){
       $.ajax({
         type: 'GET',
         url: '/users',
-        data: { keyword: input },
+        data: { keyword: input,except: except },
         dataType: 'json'
       })
 
@@ -43,7 +46,9 @@ $(function() {
         $("#user-search-result").empty();
           if (users.length !== 0) {
             users.forEach(function(user){
+            
             addUsers(user);
+
             });
           }
           else {
@@ -54,6 +59,9 @@ $(function() {
         alert('ユーザー検索に失敗しました');
       })
       return false;
+    }else{
+      $("#user-search-result").empty();
+    }
     });
 
     $(function(){
